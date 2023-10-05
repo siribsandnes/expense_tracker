@@ -1,6 +1,7 @@
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/widgets/groceryList/grocery_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
+import 'package:expense_tracker/widgets/new_grocery.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/chart/chart.dart';
@@ -48,6 +49,21 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  final List<Expense> _registredGroceries = [
+    Expense(
+      title: 'Grocery 1',
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Grocery 2',
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+  ];
+
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       useSafeArea: true,
@@ -57,9 +73,31 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+  void _openAddGroceryOverlay() {
+    showModalBottomSheet(
+      useSafeArea: true,
+      isScrollControlled: true,
+      context: context,
+      builder: (ctx) => NewGrocery(onAddGrocery: _addGrocery),
+    );
+  }
+
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
+    });
+  }
+
+  void _addGrocery(Expense grocery) {
+    setState(() {
+      _registredGroceries.add(grocery);
+    });
+  }
+
+  void _removeGrocery(Expense grocery) {
+    final groceryIndex = _registredGroceries.indexOf(grocery);
+    setState(() {
+      _registredGroceries.remove(grocery);
     });
   }
 
@@ -121,11 +159,22 @@ class _ExpensesState extends State<Expenses> {
                   child: Container(
                       padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primary
-                              .withOpacity(0.2)),
+                        borderRadius: BorderRadius.circular(8),
+                        gradient: LinearGradient(
+                          colors: [
+                            Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.3),
+                            Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.0)
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
                       margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                       height: 150,
                       child: ListView(
@@ -141,7 +190,7 @@ class _ExpensesState extends State<Expenses> {
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: _openAddGroceryOverlay,
                                     style: ElevatedButton.styleFrom(
                                         shape: const CircleBorder(),
                                         foregroundColor: Theme.of(context)
@@ -155,8 +204,11 @@ class _ExpensesState extends State<Expenses> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8)),
                                 height: 140,
-                                child:
-                                    GroceryList(groceries: _registeredExpenses),
+                                child: GroceryList(
+                                  groceries: _registredGroceries,
+                                  onRemoveGroceries: _removeGrocery,
+                                  onAddExpense: _addExpense,
+                                ),
                               )
                             ],
                           ),
