@@ -19,48 +19,36 @@ class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Flutter Course',
-      amount: 19.99,
+      amount: 15.99,
       date: DateTime.now(),
       category: Category.work,
     ),
     Expense(
-      title: 'Flutter Course',
-      amount: 19.99,
+      title: 'Beef',
+      amount: 12.49,
       date: DateTime.now(),
-      category: Category.work,
+      category: Category.food,
     ),
     Expense(
-      title: 'Flutter Course',
-      amount: 19.99,
+      title: 'Train tickets',
+      amount: 5.99,
       date: DateTime.now(),
-      category: Category.work,
-    ),
-    Expense(
-      title: 'Flutter Course',
-      amount: 19.99,
-      date: DateTime.now(),
-      category: Category.work,
-    ),
-    Expense(
-      title: 'Flutter Course',
-      amount: 19.99,
-      date: DateTime.now(),
-      category: Category.work,
+      category: Category.travel,
     ),
   ];
 
   final List<Expense> _registredGroceries = [
     Expense(
-      title: 'Grocery 1',
-      amount: 19.99,
+      title: 'Bread',
+      amount: 2.99,
       date: DateTime.now(),
-      category: Category.work,
+      category: Category.food,
     ),
     Expense(
-      title: 'Grocery 2',
-      amount: 19.99,
+      title: 'Milk',
+      amount: 1.99,
       date: DateTime.now(),
-      category: Category.work,
+      category: Category.food,
     ),
   ];
 
