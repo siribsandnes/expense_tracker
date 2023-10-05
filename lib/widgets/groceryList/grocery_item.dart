@@ -19,8 +19,16 @@ class _GroceryItemState extends State<GroceryItem> {
   void _removeGrocery(bool? isChecked) {
     setState(() {
       _isChecked = isChecked ?? false;
+      _removeGroceryItem();
+    });
+  }
+
+  //
+  void _removeGroceryItem() {
+    Future.delayed(const Duration(milliseconds: 400)).then((val) {
       widget.onRemoveGroceries(widget.grocery);
       widget.onAddExpense(widget.grocery);
+      _isChecked = false;
     });
   }
 
