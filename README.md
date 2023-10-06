@@ -1,16 +1,16 @@
-# expense_tracker
+# Expense Tracker
 
-A new Flutter project.
+This is an app created in conjunction with a Flutter & Dart course in Udemy. The app is an Expense tracker where you can add expenses and keep tabs on all your expenses. You can also create a grocery list.
 
-## Getting Started
+## The UI of the App
 
-This project is a starting point for a Flutter application.
+### Main screen
 
-A few resources to get you started if this is your first Flutter project:
+![Simulator Screenshot - iPhone 14 Pro Max - 2023-10-06 at 21 17 45](https://github.com/siribsandnes/expense_tracker/assets/98953954/da2ae67d-f756-45ec-b301-3de96ae85056)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Add Grocery
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Simulator Screenshot - iPhone 14 Pro Max - 2023-10-06 at 21 17 51](https://github.com/siribsandnes/expense_tracker/assets/98953954/05335d0a-c6c6-443f-98e8-9f5c2ba73253)
+
+### Add Expense
+![Simulator Screenshot - iPhone 14 Pro Max - 2023-10-06 at 21 18 24](https://github.com/siribsandnes/expense_tracker/assets/98953954/767cc1cd-d5f1-44f7-a086-1012fbbe8782)
