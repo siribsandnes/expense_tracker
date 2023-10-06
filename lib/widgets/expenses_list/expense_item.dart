@@ -2,11 +2,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 
+//Represents a ExpenseItem
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem(this.expense, {super.key});
 
   final Expense expense;
 
+//Builds a card widget for an expense and returns it.
   @override
   Widget build(BuildContext context) {
     return Card(

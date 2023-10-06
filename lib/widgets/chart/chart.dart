@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
 
+//Represents a chart
 class Chart extends StatelessWidget {
   const Chart({super.key, required this.expenses});
 
   final List<Expense> expenses;
 
+  //Returns a list of ExpenseBuckets
   List<ExpenseBucket> get buckets {
     return [
       ExpenseBucket.forCategory(expenses, Category.food),
@@ -17,6 +19,7 @@ class Chart extends StatelessWidget {
     ];
   }
 
+  //Returns the highest total expense of all the different ExpenseBuckets
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
@@ -29,6 +32,7 @@ class Chart extends StatelessWidget {
     return maxTotalExpense;
   }
 
+//Creates and returns a chart wiget.
   @override
   Widget build(BuildContext context) {
     final isDarkMode =

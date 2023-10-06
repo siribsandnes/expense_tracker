@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/cupertino.dart';
 
+//Represents a new expense
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
 
@@ -21,6 +22,8 @@ class _NewExpenseState extends State<NewExpense> {
   DateTime? _selectedDate;
   Category _selectedCategory = Category.leisure;
 
+//Creates and shows a datepicker. Waits for the date to be selected,
+//and then sets the _selectedDate to this date.
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1, now.month, now.day);
@@ -36,6 +39,7 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+//Shows a dialog, diferent dialog styles based on which device is used.
   void _showDialog() {
     if (Platform.isIOS) {
       showCupertinoDialog(
@@ -72,6 +76,7 @@ class _NewExpenseState extends State<NewExpense> {
     }
   }
 
+//Checks if the values are valid and then creates an expense and adds it to the expense list.
   void _submitExpenseData() {
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
@@ -99,6 +104,7 @@ class _NewExpenseState extends State<NewExpense> {
     super.dispose();
   }
 
+// Builds and return the new_expense widget to add a new expense to the list of expenses.
   @override
   Widget build(BuildContext context) {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;

@@ -20,6 +20,7 @@ class _NewGroceryState extends State<NewGrocery> {
   final _amountController = TextEditingController();
   final Category _selectedCategory = Category.food;
 
+//Shows a dialog, diferent dialog styles based on which device is used.
   void _showDialog() {
     if (Platform.isIOS) {
       showCupertinoDialog(
@@ -27,7 +28,7 @@ class _NewGroceryState extends State<NewGrocery> {
         builder: ((context) => CupertinoAlertDialog(
               title: const Text('Invalid input'),
               content: const Text(
-                  'Please make sure a valid title, amount, date and category was entered'),
+                  'Please make sure a valid title and amount was entered'),
               actions: [
                 TextButton(
                     onPressed: () {
@@ -43,7 +44,7 @@ class _NewGroceryState extends State<NewGrocery> {
         builder: (ctx) => AlertDialog(
           title: const Text('Invalid input'),
           content: const Text(
-              'Please make sure a valid title, amount, date and category was entered'),
+              'Please make sure a valid title and amount was entered'),
           actions: [
             TextButton(
                 onPressed: () {
@@ -56,6 +57,7 @@ class _NewGroceryState extends State<NewGrocery> {
     }
   }
 
+//Checks if input is valid an adds grocery to the grocery list
   void _submitExpenseData() {
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;

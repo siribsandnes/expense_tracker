@@ -1,7 +1,8 @@
 import 'package:expense_tracker/models/expense.dart';
-import 'package:expense_tracker/widgets/groceryList/grocery_item.dart';
+import 'package:expense_tracker/widgets/groceries_List/grocery_item.dart';
 import 'package:flutter/material.dart';
 
+//Represents a GroceryList
 class GroceryList extends StatelessWidget {
   const GroceryList(
       {required this.groceries,

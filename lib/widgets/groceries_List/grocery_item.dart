@@ -1,6 +1,7 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
+//Represents a GroceryItem
 class GroceryItem extends StatefulWidget {
   const GroceryItem(this.grocery, this.onRemoveGroceries, this.onAddExpense,
       {super.key});
@@ -16,6 +17,8 @@ class GroceryItem extends StatefulWidget {
 class _GroceryItemState extends State<GroceryItem> {
   var _isChecked = false;
 
+//Checks if the grocery is ticked off or not. If it is ticked off the checkbox is set to checked
+//and another function (_removeGroceryItem) is called
   void _removeGrocery(bool? isChecked) {
     setState(() {
       _isChecked = isChecked ?? false;
@@ -23,7 +26,7 @@ class _GroceryItemState extends State<GroceryItem> {
     });
   }
 
-  //
+  //Remoces a grocery item from the grocery lsit and adds the romved item to the expense list.
   void _removeGroceryItem() {
     Future.delayed(const Duration(milliseconds: 400)).then((val) {
       widget.onRemoveGroceries(widget.grocery);
@@ -32,6 +35,7 @@ class _GroceryItemState extends State<GroceryItem> {
     });
   }
 
+// Creates and returns a groceryitem widget.
   @override
   Widget build(BuildContext context) {
     return Row(

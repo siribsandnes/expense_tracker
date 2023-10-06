@@ -1,11 +1,12 @@
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
-import 'package:expense_tracker/widgets/groceryList/grocery_list.dart';
+import 'package:expense_tracker/widgets/groceries_List/grocery_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:expense_tracker/widgets/new_grocery.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/chart/chart.dart';
 
+//Represeents an expense.
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
   @override
@@ -14,8 +15,9 @@ class Expenses extends StatefulWidget {
   }
 }
 
+//Represents an expenseState
 class _ExpensesState extends State<Expenses> {
-  //Dummy expenses
+  //Creates some dummy expenses to use
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Flutter Course',
@@ -36,7 +38,7 @@ class _ExpensesState extends State<Expenses> {
       category: Category.travel,
     ),
   ];
-
+// Creates some dummy groceries to use
   final List<Expense> _registredGroceries = [
     Expense(
       title: 'Bread',
@@ -52,6 +54,7 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+//Opens the add expense overlay
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       useSafeArea: true,
@@ -61,6 +64,7 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+//opens the addGrocery overlay
   void _openAddGroceryOverlay() {
     showModalBottomSheet(
       useSafeArea: true,
@@ -70,25 +74,29 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+//Adds an expense to the expense lits
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
+//Adds a grocery to the grocery list
   void _addGrocery(Expense grocery) {
     setState(() {
       _registredGroceries.add(grocery);
     });
   }
 
+//removes a grocery from the grocery list
   void _removeGrocery(Expense grocery) {
-    final groceryIndex = _registredGroceries.indexOf(grocery);
     setState(() {
       _registredGroceries.remove(grocery);
     });
   }
 
+//Removes an expense from the expense list and shows a snackbar with
+//the option to regret the removal of the expense and add it back to the list
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
@@ -110,6 +118,7 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
+//Builds the "main screen" of the application. Creates different widgets based on the screen size.
   @override
   Widget build(BuildContext context) {
     //
@@ -211,7 +220,76 @@ class _ExpensesState extends State<Expenses> {
             )
           : Row(
               children: [
-                Expanded(child: Chart(expenses: _registeredExpenses)),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(child: Chart(expenses: _registeredExpenses)),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              gradient: LinearGradient(
+                                colors: [
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.3),
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.0)
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                            ),
+                            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                            height: 150,
+                            child: ListView(
+                              children: [
+                                Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        const Text(
+                                          'Grocery List',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: _openAddGroceryOverlay,
+                                          style: ElevatedButton.styleFrom(
+                                              shape: const CircleBorder(),
+                                              foregroundColor: Theme.of(context)
+                                                  .colorScheme
+                                                  .primary),
+                                          child: const Icon(Icons.add),
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      height: 140,
+                                      child: GroceryList(
+                                        groceries: _registredGroceries,
+                                        onRemoveGroceries: _removeGrocery,
+                                        onAddExpense: _addExpense,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+
                 //Her må handleliste komme
                 Expanded(
                   child: mainContent,

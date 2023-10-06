@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//Represents a bar in the chart
 class ChartBar extends StatelessWidget {
   const ChartBar({
     super.key,
@@ -8,6 +9,7 @@ class ChartBar extends StatelessWidget {
 
   final double fill;
 
+  //Builds and return a chart bar widget
   @override
   Widget build(BuildContext context) {
     final isDarkMode =
